@@ -52,6 +52,7 @@ public class VisitorController {
 		visitor.setLastName(visitorDetails.getLastName());
 		visitor.setFirstName(visitorDetails.getFirstName());
 		visitor.setTemperature(visitorDetails.getTemperature());
+		visitor.setDOB(visitorDetails.getDOB());
 		final Visitor updatedVisitor = visitorRespository.save(visitor);
 		return ResponseEntity.ok(updatedVisitor);
 	}

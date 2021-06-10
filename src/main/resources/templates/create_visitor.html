@@ -13,12 +13,18 @@
         crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <style>
+        a, button {
+            border-radius: 0 !important;
+            color: white !important;
+        }
+    </style>
 </head>
+
+<body>
 <div class="container">
     <h3 class="mt-3">Create New Visitor</h3>
     <br>
-    <a href="http://localhost:8080/index">Go Back</a>
-
     <form id="frm-insert">
         <div class="row">
             <div class="col">
@@ -30,11 +36,28 @@
         </div>
         <div>
             <div class="form-group">
-                <label>E-Mail Address : </label><input type="email" class="form-control" id="emailId" name="emailId" required placeholder="visitor@email.com"></br>
+                <label>E-Mail Address: </label><input type="email" class="form-control" id="emailId" name="emailId" required placeholder="visitor@email.com"></br>
             </div>
-            <button class="btn btn-success" type="submit">Save</button>
+        </div>
+        <div>
+            <div class="form-group">
+                <label>Date of Birth: </label><input type="text" class="form-control" id="dob" name="dob" required placeholder="dd/mm/yyyy"></br>
+            </div>
+        </div>
+        <div>
+            <div class="form-group">
+                <label>Temperature (°C): </label><input type="number" class="form-control" id="temperature" name="temperature" step="0.05" required></br>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div><a href="http://localhost:8080/index" class="btn btn-danger">Go Back</a></div>
+            <div><button class="btn btn-success" type="submit">Save</button></div>
+        </div>
+        
     </form>
 </div>
+</body>
+
 
 </html>
 
@@ -43,6 +66,8 @@
         var firstName = $('#firstName').val();
         var lastName = $('#lastName').val();
         var emailId = $('#emailId').val();
+        var dob = $('#dob').val();
+        var temperature = $('#temperature').val();
 
         $.ajax({
             type: "POST",
@@ -51,14 +76,17 @@
                 firstName : firstName,
                 lastName : lastName,
                 emailId : emailId,
-                temperature : 37.5
+                DOB : dob,
+                temperature : temperature
             },
             dataType: "json",
             success: function (data, status, xhr) {
-                alert("data successfully inserted");
+                alert("Data successfully inserted!");
+                window.location.replace("/index");
             },
     
-            error: function () {
+            error: function (e) {
+                console.error(e);
                 alert(status);
             }
         });            

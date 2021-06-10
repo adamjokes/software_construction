@@ -16,16 +16,18 @@ public class Visitor {
 	private String lastName;
 	private String emailId;
 	private String temperature;
+	private String DOB;
 	
 	public Visitor() {
 		
 	}
 	
-	public Visitor(String firstName, String lastName, String emailId, String temperature) {
+	public Visitor(String firstName, String lastName, String emailId, String temperature, String DOB) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
 		this.temperature = temperature;
+		this.DOB = DOB;
 	}
 	
 	@Id
@@ -69,9 +71,17 @@ public class Visitor {
 		this.temperature = temperature;
 	}
 
+	@Column(name = "DOB", nullable = false)
+	public String getDOB() {
+		return DOB;
+	}
+	public void setDOB(String DOB) {
+		this.DOB = DOB;
+	}
+
 	@Override
 	public String toString() {
-		return "Visitor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId + ", temperature=" + temperature
+		return "Visitor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId + ", temperature=" + temperature + ", DOB=" + DOB 
 				+ "]";
 	}
 	
